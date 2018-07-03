@@ -108,6 +108,16 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"\/old.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/old-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/promo-preview.png": {
 		"ft": 32768,
 		"iS": 1348442,

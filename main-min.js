@@ -105,13 +105,13 @@ var Service = function () {
 
     _createClass(Service, [{
         key: 'deliveryDuration',
-        value: function deliveryDuration() {
+        value: function deliveryDuration(min, max) {
             var _this = this;
 
             var deliveryValues = qsa('.calculator--time');
             for (var i = 0; i < deliveryValues.length; i++) {
                 var deliveryItem = deliveryValues[i];
-                deliveryItem.innerHTML = this.delivery + 'h';
+                deliveryItem.innerHTML = min + 'h';
             }
             var minus = qs('.calculator--control__minus');
             var pluses = qsa('.calculator--control__plus');
@@ -121,8 +121,9 @@ var Service = function () {
                 var time = plusItem.parentNode.querySelector('.calculator--time').innerHTML;
 
                 plusItem.addEventListener('click', function (event) {
+                    console.log(min, max);
                     if (time.innerHTML < _this.max) {
-                        ++time.innerHTML;
+                        time.innerHTML = max;
                         ++_this.counterPrice;
                         extra.innerHTML = '+$' + _this.extra * _this.counterPrice;
                         total.innerHTML = '' + (_this.price + _this.extra * _this.counterPrice);
@@ -144,8 +145,10 @@ var Service = function () {
     return Service;
 }();
 
-var serviceItem1 = new Service('.service-item-1', 199, 90, 3, 5, [24, 72], false);
-serviceItem1.deliveryDuration();
+var serviceItem1 = new Service('.service-item-1', 199, 90, 3, 5, 24, false);
+serviceItem1.deliveryDuration(24, 72);
+var serviceItem2 = new Service('.service-item-2', 199, 90, 3, 5, 24, false);
+serviceItem2.deliveryDuration(24, 36);
 // serviceItem1.duration();
 // serviceItem1.watchBook();
 
