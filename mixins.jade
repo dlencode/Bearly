@@ -1,0 +1,42 @@
+mixin service-item(id, title, description, price, color)
+    .service-item(class=`service-item-${id}`)
+        .service-item__top-line(style=`background-color: ${color}`)
+        .service-item__title= title
+        .service-item__description= description
+        .service-item__list
+            ul
+                if block
+                    block
+        hr
+        .service-item__total Total: $
+            span
+        .booking.service-item__book-now Book now
+
+mixin bullet(color)
+    svg(width='16', height='16', viewbox='0 0 16 16', fill='none', xmlns='http://www.w3.org/2000/svg')
+    path(d='M0 2L3 5L8 0', transform='translate(4 5.5)', stroke=`${color}`)
+
+mixin for-free-item(icon, title, description)
+    .col-xs-4.for-free--item
+        .for-free--item__icon: i(class=`${icon}`)
+        .for-free--item__title= title
+        .for-free--item__description= description
+
+mixin best-deal-item(icon, description)
+    .col-xs-8.best-deal--item
+        .best-deal--item__icon: i(class=`${icon}`)
+        .best-deal--item__description= description
+
+mixin faq-item(title, description)
+    .faq--item
+        .faq--item__title= title
+        .faq--item__description= description
+
+
+mixin calculator()
+    .calculator
+        span.calculator
+            span.calculator--control.calculator--control__minus -
+            span.calculator--time
+            span.calculator--control.calculator--control__plus +
+        span.calculator-extra

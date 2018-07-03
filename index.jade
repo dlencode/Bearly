@@ -1,0 +1,107 @@
+include ./mixins.jade
+
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="style.css", rel="stylesheet")
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i|Rubik:400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic", rel="stylesheet")
+        link(href="https://use.fontawesome.com/releases/v5.1.0/css/all.css", integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt", crossorigin="anonymous", rel="stylesheet")
+        title Bearly in Moscow Services
+    body
+        section.services--section__hero
+            .wave-1
+                img(src="./wave-1.svg")
+            .container
+                h1 Discover & fall in <span style="color: #D82C2D;">love</span> with your own Moscow
+                h3 Meanwhile, we make your priceless moments - timeless
+                .hero-content
+                    .hero-content--video
+                        //- iframe(id="promo", width="946", height="532", src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen)
+                    .hero-content--overlay
+                        img(src="./promo-preview.png", alt="")
+                        .watch(id="promo-play")
+                            i(class='fab fa-youtube')
+                            | Watch the promo video
+        
+        section.services--options
+            .wave-2
+                img(src="./wave-2.svg")
+            .container
+                h2 Choose your the best plan
+                .wrapper
+                    +service-item(1, "Vlog", "Remember your parents videotaped their vacations and all the family would then watch it on the TV? Well, that's 10x better", 199, '#131313')
+                        li.bullet-navy 
+                            | Video vlog minutes
+                            +calculator
+                        li.bullet-navy.calculator-shooting Shooting duration: <span>2</span>h
+                        li.bullet-navy Shot on professional gear
+                        li.bullet-navy Simple titling
+                        li.bullet-navy Basic editing
+                        li.bullet-navy Royalty free music for intro & closing
+                        li.bullet-navy
+                            | Delivery in
+                            +calculator
+                        li.bullet-navy Final version delivered in high quality 1080p
+
+                    +service-item(2, "Movie", "Google 'best experiences in Moscow'. You won't find anything like that. Star in your own movie in Moscow", 299, '#999999')
+                        li.bullet-gray 1-minute video of telling Your Story
+                        li.bullet-gray Shooting duration: 2h
+                        li.bullet-gray Shot on professional gear
+                        li.bullet-gray Complex transitions
+                        li.bullet-gray Color Grading
+                        li.bullet-gray
+                            | Delivery in
+                            +calculator
+                        li.bullet-gray 2 instagram (IGTV) story previews optimized
+                        li.bullet-gray Final version delivered in high quality 1080p
+
+                    +service-item(3, "Photoshoot", "A photoshoot you won't even realize happened but in the end, you'll get the best pics in Moscow ever", 119, '#D82C2D')
+                        li.bullet-red 1-minute video of telling Your Story
+                        li.bullet-red Shooting duration: 2h
+                        li.bullet-red Shot on professional gear
+                        li.bullet-red Complex transitions
+                        li.bullet-red Color Grading
+                        li.bullet-red Delivery in
+                        li.bullet-red 2 instagram (IGTV) story previews optimized
+                        li.bullet-red Final version delivered in high quality 1080p
+        
+        section.for-free
+            .container
+                h2 What comes for free cuz…</br>it’s about having the best moments in Moscow
+                .wrapper
+                    +for-free-item('far fa-map', 'Custom route', 'Tell us your preferences and we will create a perfect walking route for you')
+                    +for-free-item('far fa-images', 'Free photos', 'When doing video - I will take few great shots when the moment is right')
+                    +for-free-item('far fa-heart', 'Casual Guide', 'Fascinating history facts & stories about Moscow so that you will almost be a local after')
+        
+        section.best-deal#booking
+            .wave-3
+                img(src="./wave-3.svg")
+                //- img(src="./man.png").best-deal-man
+            .container
+                h2 Why is it the best deal out there?
+                .row.center-xs
+                    +best-deal-item('fas fa-video', "You don't have to be a professional vlogger to have a fantastic video! We capture your best moments in Moscow so that you can keep those memories with you forever!")
+                    +best-deal-item('fas fa-gem', "We make luxury accessible. If you ever thought or wanted to get these services - we are your go-to partner. You will barely find any other platforms that offer high-quality video services in Moscow, especially in English.")
+                    +best-deal-item('fas fa-forward', "The research says that when we are constantly taking photos when we travel - we miss being at the moment and fully enjoying it. We take care of that so that you can be you living the moment.")
+                    +best-deal-item('fas fa-grin-stars', "We believe it is much better to spend on experiences over the things. Do you agree?")
+                .booking Book now
+        
+        section.faq
+            .container
+                h2 Frequently asked questions
+                .wrapper
+                    +faq-item('Are the scenes scripted?', 'Absolutely not! We embrace the beauty of the moment and realness of the experience. This way we create a unique story each time.')
+                    +faq-item('Why are you doing this?', 'We are passionate about telling stories though the power of video and photography. We also  love Moscow and it is just another way we can showcase the city and uncover the beauty of it for tourists just like you.')
+                    +faq-item('Can I book one of your services last minute?', 'The minimum time you can book any of our services is 2 days in advance. We aim to create meaningful high quality content and treat each project individually.')
+                    +faq-item('Do I pay upfront?', 'Yes. This guarantees us that everything is set and we can properly prepare your experience.')
+                    +faq-item('What are the cancellation policy?', `You can make the request using this link. In 3 working days you will get the answer from us and we return your money.`)
+
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+        script(src="./main-min.js")
+        
