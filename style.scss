@@ -163,6 +163,7 @@ section .wrapper {
 }
 
 .service-item {
+    display: table;
     position: relative;
     width: 367px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -178,7 +179,7 @@ section .wrapper {
     // color: #ffffff;
     &:hover {
         transform: translateY(5px);
-        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.2);
     }
     &:nth-child(2) {
         transform: translateY(-20px);
@@ -251,6 +252,7 @@ section .wrapper {
                 position: relative;
                 margin-left: 24px;
                 display: flex;
+                flex-wrap: wrap;
                 transition: all 0.25s;
                 &::before {
                     width: 16px;
@@ -432,9 +434,10 @@ section .wrapper {
     margin-bottom: 20vh;
     .wrapper {
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
     }
     &--item {
+        display: table;
         width: 348px;
         border: 3px solid #131313;
         box-sizing: border-box;
@@ -507,4 +510,60 @@ section .wrapper {
     color: #d82c2d;
 }
 
+}
+
+.toggle {
+    display: flex;
+    span {
+        transition: all 0.25s;
+        color: #C4C4C4;
+    }
+    &-active {
+        .instagram-toggle--status {
+            background-color: $color--main;
+            transform: translateX(16px);
+        }
+        & span {
+            color: $color--main !important;
+        }
+    }
+}
+.instagram {
+    &-optimize {
+        display: flex;
+        flex-direction: column;
+    }
+    &-toggle {
+        background-color: $color--light-gray;
+        width: 40px;
+        height: 24px;
+        display: flex;
+        border-radius: 50px;
+        position: relative;
+        margin-left: 5px;
+        cursor: pointer;
+        &::before {
+            position: absolute;
+            left: -85px;
+            content: '';
+            color: #C4C4C4;
+        }
+        &--status {
+            transition: all 0.25s;
+            position: absolute;
+            background-color: rgba($color: $color--navy, $alpha: 0.1);
+            left: 4px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50px;
+            &__enabled {
+                background-color: $color--main;
+                transform: translateX(16px);
+                .instagram-toggle::before {
+                    color: $color--main !important;
+                }
+            }
+        }
+    }
 }

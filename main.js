@@ -3,7 +3,7 @@ function q(selector) {
 }
 
 class Service {
-  constructor(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize) {
+  constructor(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize, instagramOptimizeExtra) {
     this.id = document.querySelector(id);
     this.price = price;
     this.durationExtra = durationExtra;
@@ -11,6 +11,7 @@ class Service {
     this.deliveryMin = deliveryMin;
     this.deliveryMax = deliveryMax;
     this.instagramOptimize = instagramOptimize;
+    this.instagramOptimizeExtra = instagramOptimizeExtra;
     this.durationMin = durationMin;
     this.durationMax = durationMax;
 
@@ -102,17 +103,40 @@ class Service {
       }
     });
   }
+
+  instagram() {
+    let status = this.instagramOptimize;
+    let toggle = this.id.querySelector(`.instagram-toggle`);
+    let toggler = toggle.querySelector(`.instagram-toggle--status`);
+
+    let extraPay = this.id.querySelector(`.instagram-toggle--extra`);
+
+    toggle.addEventListener(`click`, () => {
+      if (!status) {
+        toggle.parentNode.classList.add(`toggle-active`);
+        status = !status;
+        // this.total.innerHTML = `${+this.total.innerHTML + this.instagramOptimizeExtra}`;
+        // extraPay.innerHTML = `+$${this.instagramOptimizeExtra}`;
+      } else {
+        toggle.parentNode.classList.remove(`toggle-active`);
+        status = !status;
+        // this.total.innerHTML = `${+this.total.innerHTML - this.instagramOptimizeExtra}`;
+      }
+    });
+  }
 }
 
-let service1 = new Service(`#service-item-1`, 199, 90, 3, 5, 100, 24, 72, false);
+let service1 = new Service(`#service-item-1`, 199, 90, 3, 5, 100, 24, 72, false, null);
 service1.setup();
 service1.duration();
 service1.delivery();
 
-let service2 = new Service(`#service-item-2`, 299, null, null, null, 100, 24, 72, false);
+let service2 = new Service(`#service-item-2`, 299, null, null, null, 100, 24, 72, false, 100);
 service2.setup();
 service2.delivery();
+service2.instagram();
 
-let service3 = new Service(`#service-item-3`, 119, null, null, null, 100, 24, 72, false);
+let service3 = new Service(`#service-item-3`, 119, null, null, null, 100, 24, 72, false, 100);
 service3.setup();
 service3.delivery();
+service3.instagram();

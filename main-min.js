@@ -9,7 +9,7 @@ function q(selector) {
 }
 
 var Service = function () {
-  function Service(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize) {
+  function Service(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize, instagramOptimizeExtra) {
     _classCallCheck(this, Service);
 
     this.id = document.querySelector(id);
@@ -19,6 +19,7 @@ var Service = function () {
     this.deliveryMin = deliveryMin;
     this.deliveryMax = deliveryMax;
     this.instagramOptimize = instagramOptimize;
+    this.instagramOptimizeExtra = instagramOptimizeExtra;
     this.durationMin = durationMin;
     this.durationMax = durationMax;
 
@@ -118,20 +119,44 @@ var Service = function () {
         }
       });
     }
+  }, {
+    key: "instagram",
+    value: function instagram() {
+      var status = this.instagramOptimize;
+      var toggle = this.id.querySelector(".instagram-toggle");
+      var toggler = toggle.querySelector(".instagram-toggle--status");
+
+      var extraPay = this.id.querySelector(".instagram-toggle--extra");
+
+      toggle.addEventListener("click", function () {
+        if (!status) {
+          toggle.parentNode.classList.add("toggle-active");
+          status = !status;
+          // this.total.innerHTML = `${+this.total.innerHTML + this.instagramOptimizeExtra}`;
+          // extraPay.innerHTML = `+$${this.instagramOptimizeExtra}`;
+        } else {
+          toggle.parentNode.classList.remove("toggle-active");
+          status = !status;
+          // this.total.innerHTML = `${+this.total.innerHTML - this.instagramOptimizeExtra}`;
+        }
+      });
+    }
   }]);
 
   return Service;
 }();
 
-var service1 = new Service("#service-item-1", 199, 90, 3, 5, 100, 24, 72, false);
+var service1 = new Service("#service-item-1", 199, 90, 3, 5, 100, 24, 72, false, null);
 service1.setup();
 service1.duration();
 service1.delivery();
 
-var service2 = new Service("#service-item-2", 299, null, null, null, 100, 24, 72, false);
+var service2 = new Service("#service-item-2", 299, null, null, null, 100, 24, 72, false, 100);
 service2.setup();
 service2.delivery();
+service2.instagram();
 
-var service3 = new Service("#service-item-3", 119, null, null, null, 100, 24, 72, false);
+var service3 = new Service("#service-item-3", 119, null, null, null, 100, 24, 72, false, 100);
 service3.setup();
 service3.delivery();
+service3.instagram();

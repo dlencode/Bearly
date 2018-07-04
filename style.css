@@ -140,6 +140,7 @@ section .wrapper {
   position: relative; }
 
 .service-item {
+  display: table;
   position: relative;
   width: 367px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -153,7 +154,7 @@ section .wrapper {
   transition: all 0.25s; }
   .service-item:hover {
     transform: translateY(5px);
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.2); }
+    box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.2); }
   .service-item:nth-child(2) {
     transform: translateY(-20px);
     z-index: 2; }
@@ -204,6 +205,7 @@ section .wrapper {
     position: relative;
     margin-left: 24px;
     display: flex;
+    flex-wrap: wrap;
     transition: all 0.25s; }
     .service-item__list ul li::before {
       width: 16px;
@@ -354,8 +356,9 @@ section .wrapper {
   margin-bottom: 20vh; }
   .faq .wrapper {
     flex-wrap: wrap;
-    justify-content: flex-start; }
+    justify-content: center; }
   .faq--item {
+    display: table;
     width: 348px;
     border: 3px solid #131313;
     box-sizing: border-box;
@@ -414,3 +417,47 @@ section .wrapper {
   .calculator-extra {
     margin-left: 10px;
     color: #d82c2d; }
+
+.toggle {
+  display: flex; }
+  .toggle span {
+    transition: all 0.25s;
+    color: #C4C4C4; }
+  .toggle-active .instagram-toggle--status {
+    background-color: #D82C2D;
+    transform: translateX(16px); }
+  .toggle-active span {
+    color: #D82C2D !important; }
+
+.instagram-optimize {
+  display: flex;
+  flex-direction: column; }
+
+.instagram-toggle {
+  background-color: #F2F2F2;
+  width: 40px;
+  height: 24px;
+  display: flex;
+  border-radius: 50px;
+  position: relative;
+  margin-left: 5px;
+  cursor: pointer; }
+  .instagram-toggle::before {
+    position: absolute;
+    left: -85px;
+    content: '';
+    color: #C4C4C4; }
+  .instagram-toggle--status {
+    transition: all 0.25s;
+    position: absolute;
+    background-color: rgba(19, 19, 19, 0.1);
+    left: 4px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50px; }
+    .instagram-toggle--status__enabled {
+      background-color: #D82C2D;
+      transform: translateX(16px); }
+      .instagram-toggle--status__enabled .instagram-toggle::before {
+        color: #D82C2D !important; }

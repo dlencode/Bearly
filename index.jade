@@ -57,20 +57,23 @@ html(lang="en")
                         li.bullet-gray
                             | Delivery in (hours)
                             +calculator-delivery(`service-delivery`, 72, 24)
-                        li.bullet-gray 2 instagram (IGTV) story previews optimized
+                        li.bullet-gray
+                            span 2 instagram (IGTV) story previews
+                            +instagram
                         li.bullet-gray Final version delivered in high quality 1080p
 
                     +service-item(3, "Photoshoot", "A photoshoot you won't even realize happened but in the end, you'll get the best pics in Moscow ever", 119, '#D82C2D')
-                        li.bullet-red 1-minute video of telling Your Story
-                        li.bullet-red Shooting duration: 2h
+                        li.bullet-red Photo shooting
+                        li.bullet-red Shooting duration: 1,5h
                         li.bullet-red Shot on professional gear
-                        li.bullet-red Complex transitions
-                        li.bullet-red Color Grading
+                        li.bullet-red 21 professionally edited photos
+                        li.bullet-red Retouching included
                         li.bullet-red
                             | Delivery in (hours)
                             +calculator-delivery(`service-delivery`, 72, 24)
-                        li.bullet-red 2 instagram (IGTV) story previews optimized
-                        li.bullet-red Final version delivered in high quality 1080p
+                        li.bullet-red.instagram-optimize
+                            span Instagram
+                                +instagram
         
         section.for-free
             .container
