@@ -1,138 +1,122 @@
-// Calculator for plans
-// Author: Danila Ermolneko
-// Telegram: @dlencode
-
-function qs(selector) {
-    return document.querySelector(`${selector}`);
+function q(selector) {
+  return document.querySelector(selector);
 }
-
-function qsa(selector) {
-    return document.querySelectorAll(`${selector}`);
-}
-
-// class Service {
-//     constructor(element, price, extra, min, max, delivery, instagram) {
-//         this.element = qs(`${element}`);
-//         this.price = price;
-//         this.extra = extra;
-//         this.min = min;
-//         this.max = max;
-//         this.delivery = delivery;
-//         this.instagram = instagram;
-//         this.counterPrice = 0;
-//     }
-
-//     duration() {
-//         let extra = qs(`.calculator-extra`);
-//         let time = qs(`.calculator--time`);
-//         time.innerHTML = this.min;
-
-//         let total = qs(`.service-item__total span`);
-//         total.innerHTML = this.price;
-
-//         let minus = qs(`.calculator--control__minus`);
-//         let plus = qs(`.calculator--control__plus`);
-
-//         minus.classList.add(`calculator--control__non-active`);
-
-//         minus.addEventListener('click', (event) => {
-//             if (time.innerHTML > this.min) {
-//                 --time.innerHTML;
-//                 --this.counterPrice;
-//                 extra.innerHTML = `+$${this.extra * this.counterPrice}`;
-//                 total.innerHTML = `${this.price + (this.extra * this.counterPrice)}`;
-//                 plus.classList.remove(`calculator--control__non-active`);
-//                 minus.classList.remove(`calculator--control__non-active`);
-//             }
-//             if (time.innerHTML == this.min) {
-//                 minus.classList.add(`calculator--control__non-active`);
-//                 extra.innerHTML = ``;
-//             }
-//         });
-//         plus.addEventListener('click', (event) => {
-//             if (time.innerHTML < this.max) {
-//                 ++time.innerHTML;
-//                 ++this.counterPrice;
-//                 extra.innerHTML = `+$${this.extra * this.counterPrice}`;
-//                 total.innerHTML = `${this.price + (this.extra * this.counterPrice)}`;
-//                 plus.classList.remove(`calculator--control__non-active`);
-//                 minus.classList.remove(`calculator--control__non-active`);
-//             }
-//             if (time.innerHTML == this.max) {
-//                 plus.classList.add(`calculator--control__non-active`);
-//             }
-//         });
-//     }
-
-//     delivery() {
-//         let extra = qsa(`.calculator-extra`);
-//         for (let i = 0; i < extra.length; i++) {
-//             const test = extra[i];
-//             console.log(test);
-            
-//         }
-//     }
-
-//     watchBook() {
-//         let book = qs(`.booking`);
-//         let total = qs(`.service-item__total span`);
-
-//         book.addEventListener('click', () => {
-//             let output = total.innerHTML;
-//         });
-//     }
-// }
 
 class Service {
-  constructor(element, price, extra, min, max, delivery, instagram) {
-      this.element = qs(`${element}`);
-      this.price = price;
-      this.extra = extra;
-      this.min = min;
-      this.max = max;
-      this.delivery = delivery;
-      this.instagram = instagram;
-      this.counterPrice = 0;
+  constructor(
+    id,
+    price,
+    durationExtra,
+    deliveryExtra,
+    deliveryMin,
+    deliveryMax,
+    instagramOptimize,
+    durationMin,
+    durationMax
+  ) {
+    this.id = document.querySelector(id);
+    this.price = price;
+    this.durationExtra = durationExtra;
+    this.deliveryExtra = deliveryExtra;
+    this.deliveryMin = deliveryMin;
+    this.deliveryMax = deliveryMax;
+    this.instagramOptimize = instagramOptimize;
+    this.durationMin = durationMin;
+    this.durationMax = durationMax;
+
+    this.total = this.id.querySelector(`.service-item__total span`);
+
+    this.counter = 0;
   }
 
-  deliveryDuration(min, max) {
-    let deliveryValues = qsa(`.calculator--time`);
-    for (let i = 0; i < deliveryValues.length; i++) {
-        const deliveryItem = deliveryValues[i];
-        deliveryItem.innerHTML = `${min}h`;
-    }
-    let minus = qs(`.calculator--control__minus`);
-    let pluses = qsa(`.calculator--control__plus`);
+  setup() {
+    let total = this.id.querySelector(`.service-item__total span`);
+    total.innerHTML = this.price;
+  }
 
-    for (let i = 0; i < pluses.length; i++) {        
-        const plusItem = pluses[i];
-        let time = plusItem.parentNode.querySelector(`.calculator--time`).innerHTML;
-        
-        plusItem.addEventListener('click', (event) => {
-            console.log(min, max);
-            if (time.innerHTML < this.max) {
-                time.innerHTML = max;
-                ++this.counterPrice;
-                extra.innerHTML = `+$${this.extra * this.counterPrice}`;
-                total.innerHTML = `${this.price + (this.extra * this.counterPrice)}`;
-                plus.classList.remove(`calculator--control__non-active`);
-                minus.classList.remove(`calculator--control__non-active`);
-            }
-            if (time.innerHTML == this.max) {
-                plus.classList.add(`calculator--control__non-active`);
-            }
-        });
-    }
+  // TODO:
+  // Borders for right calculations
+
+  duration() {
+    let text = this.id.querySelector(
+      `.calculator-service-duration .calculator--time`
+    );
+    text.innerHTML = `${this.durationMin}`;
+
+    let minus = this.id.querySelector(
+      `.calculator-service-duration .calculator--control__minus`
+    );
+    let plus = this.id.querySelector(
+      `.calculator-service-duration .calculator--control__plus`
+    );
+    let extraPay = this.id.querySelector(
+      `.calculator-service-duration .calculator-extra`
+    );
+
+    minus.classList.add(`calculator--control__non-active`);
+
+    plus.addEventListener(`click`, () => {
+      if (text.innerHTML < this.durationMax) {
+        console.log(this.counter);
+        ++text.innerHTML;
+        ++this.counter;
+        extraPay.innerHTML = `+$${this.durationExtra * this.counter}`;
+        this.total.innerHTML = `${+this.total.innerHTML + this.durationExtra * this.counter}`;
+        plus.classList.remove(`calculator--control__non-active`);
+        minus.classList.remove(`calculator--control__non-active`);
+      } if (text.innerHTML == this.durationMax) {
+        plus.classList.add(`calculator--control__non-active`);
+      }
+    });
+    // FIXME: fix not correctly calculations
+    minus.addEventListener(`click`, () => {      
+      if (text.innerHTML > this.durationMin) {
+        console.log(this.counter);
+        --text.innerHTML;
+        --this.counter;
+        this.total.innerHTML = `${+this.total.innerHTML - this.durationExtra * this.counter}`;
+      } if (text.innerHTML == this.durationMin) {
+        minus.classList.add(`calculator--control__non-active`);
+        extraPay.innerHTML = ``;
+      }
+    });
+  }
+
+  delivery() {
+    let text = this.id.querySelector(
+      `.calculator-service-delivery .calculator--time`
+    );
+    text.innerHTML = `${this.deliveryMax}h`;
+
+    let minus = this.id.querySelector(
+      `.calculator-service-delivery .calculator--control__minus`
+    );
+    let plus = this.id.querySelector(
+      `.calculator-service-delivery .calculator--control__plus`
+    );
+    let extraPay = this.id.querySelector(
+      `.calculator-service-delivery .calculator-extra`
+    );
+
+    minus.addEventListener(`click`, () => {
+      text.innerHTML = `${this.deliveryMin}h`;
+      extraPay.innerHTML = `+$${this.deliveryExtra}`;
+      this.total.innerHTML = `${+this.total.innerHTML + this.deliveryExtra}`;
+    });
+
+    plus.addEventListener(`click`, () => {
+      text.innerHTML = `${this.deliveryMax}h`;
+      extraPay.innerHTML = ``;
+      this.total.innerHTML = `${+this.total.innerHTML - this.deliveryExtra}`;
+    });
   }
 }
 
-let serviceItem1 = new Service(`.service-item-1`, 199, 90, 3, 5, 24, false);
-serviceItem1.deliveryDuration(24, 72);
-let serviceItem2 = new Service(`.service-item-2`, 199, 90, 3, 5, 24, false);
-serviceItem2.deliveryDuration(24, 36);
-// serviceItem1.duration();
-// serviceItem1.watchBook();
+let service1 = new Service(`#service-item-1`, 199, 90, 100, 24, 72, false, 3, 5);
+service1.setup();
+service1.duration();
+service1.delivery();
 
-// let serviceItem2 = new Service(`.service-item-1`, 199, 90, 3, 5, 24, false);
-// serviceItem2.delivery();
-// serviceItem2.watchBook();
+let service2 = new Service(`#service-item-2`, 299, null, 100, 24, 72, false);
+service2.setup();
+service2.delivery();

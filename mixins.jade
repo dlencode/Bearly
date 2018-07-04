@@ -1,5 +1,5 @@
 mixin service-item(id, title, description, price, color)
-    .service-item(class=`service-item-${id}`)
+    .service-item(id=`service-item-${id}`)
         .service-item__top-line(style=`background-color: ${color}`)
         .service-item__title= title
         .service-item__description= description
@@ -8,7 +8,7 @@ mixin service-item(id, title, description, price, color)
                 if block
                     block
         hr
-        .service-item__total Total: $
+        .service-item__total Total: $<span></span>
             span
         .booking.service-item__book-now Book now
 
@@ -33,10 +33,19 @@ mixin faq-item(title, description)
         .faq--item__description= description
 
 
-mixin calculator()
-    .calculator
+
+mixin calculator-time(name, one, two, three)
+    .calculator(class=`calculator-${name}`)
         span.calculator
             span.calculator--control.calculator--control__minus -
-            span.calculator--time
+            span.calculator--time(data-one-mins=`${one}` data-two-mins=`${two}` data-three-mins=`${three}`)
+            span.calculator--control.calculator--control__plus +
+        span.calculator-extra
+
+mixin calculator-delivery(name, min, max)
+    .calculator(class=`calculator-${name}`)
+        span.calculator
+            span.calculator--control.calculator--control__minus -
+            span.calculator--time(data-min-delivery=`${min}` data-max-delivery=`${max}`)
             span.calculator--control.calculator--control__plus +
         span.calculator-extra

@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto Mono';
-  color: #131313; }
+  color: #131313;
+  background: #131313; }
 
 h1,
 h2,
@@ -150,7 +151,9 @@ section .wrapper {
   overflow: hidden;
   transform: translateY(0px);
   z-index: 1;
-  transition: all 0.25s; }
+  transition: all 0.25s;
+  background: #131313;
+  color: #ffffff; }
   .service-item:hover {
     transform: translateY(5px); }
   .service-item:nth-child(2) {
@@ -392,7 +395,7 @@ section .wrapper {
     width: 20px;
     height: 20px;
     border-radius: 50px;
-    background-color: #F2F2F2;
+    background-color: rgba(242, 242, 242, 0.25);
     margin: 0 5px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -400,7 +403,8 @@ section .wrapper {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer; }
+    cursor: pointer;
+    color: #ffffff; }
     .calculator--control__non-active {
       opacity: 0.25;
       cursor: auto; }

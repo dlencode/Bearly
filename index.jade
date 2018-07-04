@@ -37,7 +37,7 @@ html(lang="en")
                     +service-item(1, "Vlog", "Remember your parents videotaped their vacations and all the family would then watch it on the TV? Well, that's 10x better", 199, '#131313')
                         li.bullet-navy 
                             | Video vlog minutes
-                            //- +calculator
+                            +calculator-time(`service-duration`, 3, 4, 5)
                         li.bullet-navy.calculator-shooting Shooting duration: <span>2</span>h
                         li.bullet-navy Shot on professional gear
                         li.bullet-navy Simple titling
@@ -45,7 +45,7 @@ html(lang="en")
                         li.bullet-navy Royalty free music for intro & closing
                         li.bullet-navy
                             | Delivery in
-                            +calculator
+                            +calculator-delivery(`service-delivery`, 72, 24)
                         li.bullet-navy Final version delivered in high quality 1080p
 
                     +service-item(2, "Movie", "Google 'best experiences in Moscow'. You won't find anything like that. Star in your own movie in Moscow", 299, '#999999')
@@ -56,7 +56,7 @@ html(lang="en")
                         li.bullet-gray Color Grading
                         li.bullet-gray
                             | Delivery in
-                            +calculator
+                            +calculator-delivery(`service-delivery`, 72, 24)
                         li.bullet-gray 2 instagram (IGTV) story previews optimized
                         li.bullet-gray Final version delivered in high quality 1080p
 
@@ -66,7 +66,9 @@ html(lang="en")
                         li.bullet-red Shot on professional gear
                         li.bullet-red Complex transitions
                         li.bullet-red Color Grading
-                        li.bullet-red Delivery in
+                        li.bullet-red
+                            | Delivery in
+                            +calculator-delivery(`service-delivery`, 72, 24)
                         li.bullet-red 2 instagram (IGTV) story previews optimized
                         li.bullet-red Final version delivered in high quality 1080p
         
