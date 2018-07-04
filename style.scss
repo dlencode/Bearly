@@ -5,8 +5,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto Mono';
-    color: #131313;
-    background: #131313;
+    color: $color--navy;
 }
 
 h1,
@@ -34,7 +33,7 @@ h1 {
     font-size: 32px;
     text-align: center;
     text-transform: uppercase;
-    color: #131313;
+    color: $color--navy;
 }
 
 h2 {
@@ -175,10 +174,11 @@ section .wrapper {
     transform: translateY(0px);
     z-index: 1;
     transition: all 0.25s;
-    background: #131313;
-    color: #ffffff;
+    // background: #131313;
+    // color: #ffffff;
     &:hover {
         transform: translateY(5px);
+        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.2);
     }
     &:nth-child(2) {
         transform: translateY(-20px);
@@ -251,6 +251,7 @@ section .wrapper {
                 position: relative;
                 margin-left: 24px;
                 display: flex;
+                transition: all 0.25s;
                 &::before {
                     width: 16px;
                     height: 16px;
@@ -286,6 +287,10 @@ section .wrapper {
         display: flex;
         justify-content: center;
     }
+}
+
+.calculator-shooting span {
+    margin-left: 10px;
 }
 
 .for-free {
@@ -467,7 +472,7 @@ section .wrapper {
 // Calculator
 .calculator {
     display: flex;
-    margin-left: 10px;
+    margin-left: 4px;
     align-items: center;
     &--control {
         display: flex;
@@ -485,7 +490,7 @@ section .wrapper {
         -ms-user-select: none;
         user-select: none;
         cursor: pointer;
-        color: #ffffff;
+        // color: #ffffff;
         &__non-active {
             opacity: 0.25;
             cursor: auto;

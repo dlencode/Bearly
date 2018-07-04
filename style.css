@@ -2,8 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto Mono';
-  color: #131313;
-  background: #131313; }
+  color: #131313; }
 
 h1,
 h2,
@@ -151,11 +150,10 @@ section .wrapper {
   overflow: hidden;
   transform: translateY(0px);
   z-index: 1;
-  transition: all 0.25s;
-  background: #131313;
-  color: #ffffff; }
+  transition: all 0.25s; }
   .service-item:hover {
-    transform: translateY(5px); }
+    transform: translateY(5px);
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.2); }
   .service-item:nth-child(2) {
     transform: translateY(-20px);
     z-index: 2; }
@@ -205,7 +203,8 @@ section .wrapper {
     margin-top: 30px;
     position: relative;
     margin-left: 24px;
-    display: flex; }
+    display: flex;
+    transition: all 0.25s; }
     .service-item__list ul li::before {
       width: 16px;
       height: 16px;
@@ -233,6 +232,9 @@ section .wrapper {
   .service-item__book-now {
     display: flex;
     justify-content: center; }
+
+.calculator-shooting span {
+  margin-left: 10px; }
 
 .for-free {
   margin-top: 40vh; }
@@ -386,7 +388,7 @@ section .wrapper {
 
 .calculator {
   display: flex;
-  margin-left: 10px;
+  margin-left: 4px;
   align-items: center; }
   .calculator--control {
     display: flex;
@@ -403,8 +405,7 @@ section .wrapper {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer;
-    color: #ffffff; }
+    cursor: pointer; }
     .calculator--control__non-active {
       opacity: 0.25;
       cursor: auto; }

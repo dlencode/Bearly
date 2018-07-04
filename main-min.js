@@ -9,7 +9,7 @@ function q(selector) {
 }
 
 var Service = function () {
-  function Service(id, price, durationExtra, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize, durationMin, durationMax) {
+  function Service(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize) {
     _classCallCheck(this, Service);
 
     this.id = document.querySelector(id);
@@ -33,10 +33,6 @@ var Service = function () {
       var total = this.id.querySelector(".service-item__total span");
       total.innerHTML = this.price;
     }
-
-    // TODO:
-    // Borders for right calculations
-
   }, {
     key: "duration",
     value: function duration() {
@@ -49,29 +45,36 @@ var Service = function () {
       var plus = this.id.querySelector(".calculator-service-duration .calculator--control__plus");
       var extraPay = this.id.querySelector(".calculator-service-duration .calculator-extra");
 
+      var shooting = this.id.querySelector(".calculator-shooting span");
+
       minus.classList.add("calculator--control__non-active");
+
+      var book = this.id.querySelector(".booking");
 
       plus.addEventListener("click", function () {
         if (text.innerHTML < _this.durationMax) {
-          console.log(_this.counter);
-          ++text.innerHTML;
           ++_this.counter;
+          ++text.innerHTML;
+          shooting.innerHTML = ++shooting.innerHTML;
           extraPay.innerHTML = "+$" + _this.durationExtra * _this.counter;
-          _this.total.innerHTML = "" + (+_this.total.innerHTML + _this.durationExtra * _this.counter);
+          _this.total.innerHTML = "" + (+_this.total.innerHTML + _this.durationExtra);
           plus.classList.remove("calculator--control__non-active");
           minus.classList.remove("calculator--control__non-active");
         }if (text.innerHTML == _this.durationMax) {
           plus.classList.add("calculator--control__non-active");
         }
       });
-      // FIXME: fix not correctly calculations
       minus.addEventListener("click", function () {
         if (text.innerHTML > _this.durationMin) {
-          console.log(_this.counter);
           --text.innerHTML;
           --_this.counter;
-          _this.total.innerHTML = "" + (+_this.total.innerHTML - _this.durationExtra * _this.counter);
-        }if (text.innerHTML == _this.durationMin) {
+          shooting.innerHTML = --shooting.innerHTML;
+          extraPay.innerHTML = "+$" + _this.durationExtra * _this.counter;
+          _this.total.innerHTML = "" + (+_this.total.innerHTML - _this.durationExtra);
+          plus.classList.remove("calculator--control__non-active");
+          minus.classList.remove("calculator--control__non-active");
+        }
+        if (text.innerHTML == _this.durationMin) {
           minus.classList.add("calculator--control__non-active");
           extraPay.innerHTML = "";
         }
@@ -83,22 +86,36 @@ var Service = function () {
       var _this2 = this;
 
       var text = this.id.querySelector(".calculator-service-delivery .calculator--time");
-      text.innerHTML = this.deliveryMax + "h";
+      text.innerHTML = "" + this.deliveryMax;
 
       var minus = this.id.querySelector(".calculator-service-delivery .calculator--control__minus");
       var plus = this.id.querySelector(".calculator-service-delivery .calculator--control__plus");
       var extraPay = this.id.querySelector(".calculator-service-delivery .calculator-extra");
 
+      plus.classList.add("calculator--control__non-active");
+
       minus.addEventListener("click", function () {
-        text.innerHTML = _this2.deliveryMin + "h";
-        extraPay.innerHTML = "+$" + _this2.deliveryExtra;
-        _this2.total.innerHTML = "" + (+_this2.total.innerHTML + _this2.deliveryExtra);
+        if (text.innerHTML > _this2.deliveryMin) {
+          text.innerHTML = "" + _this2.deliveryMin;
+          extraPay.innerHTML = "+$" + _this2.deliveryExtra;
+          _this2.total.innerHTML = "" + (+_this2.total.innerHTML + _this2.deliveryExtra);
+          plus.classList.remove("calculator--control__non-active");
+          minus.classList.remove("calculator--control__non-active");
+        }if (text.innerHTML == _this2.deliveryMin) {
+          minus.classList.add("calculator--control__non-active");
+        }
       });
 
       plus.addEventListener("click", function () {
-        text.innerHTML = _this2.deliveryMax + "h";
-        extraPay.innerHTML = "";
-        _this2.total.innerHTML = "" + (+_this2.total.innerHTML - _this2.deliveryExtra);
+        if (text.innerHTML < _this2.deliveryMax) {
+          text.innerHTML = "" + _this2.deliveryMax;
+          extraPay.innerHTML = "";
+          _this2.total.innerHTML = "" + (+_this2.total.innerHTML - _this2.deliveryExtra);
+          plus.classList.remove("calculator--control__non-active");
+          minus.classList.remove("calculator--control__non-active");
+        }if (text.innerHTML == _this2.deliveryMax) {
+          plus.classList.add("calculator--control__non-active");
+        }
       });
     }
   }]);
@@ -106,11 +123,15 @@ var Service = function () {
   return Service;
 }();
 
-var service1 = new Service("#service-item-1", 199, 90, 100, 24, 72, false, 3, 5);
+var service1 = new Service("#service-item-1", 199, 90, 3, 5, 100, 24, 72, false);
 service1.setup();
 service1.duration();
 service1.delivery();
 
-var service2 = new Service("#service-item-2", 299, null, 100, 24, 72, false);
+var service2 = new Service("#service-item-2", 299, null, null, null, 100, 24, 72, false);
 service2.setup();
 service2.delivery();
+
+var service3 = new Service("#service-item-3", 119, null, null, null, 100, 24, 72, false);
+service3.setup();
+service3.delivery();
