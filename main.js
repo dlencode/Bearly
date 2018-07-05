@@ -2,6 +2,17 @@ function q(selector) {
   return document.querySelector(selector);
 }
 
+function delay(f, ms) {
+  return function () {
+    let savedThis = this;
+    let savedArgs = arguments;
+
+    setTimeout(() => {
+      f.apply(savedThis, savedArgs);
+    }, ms);
+  };
+}
+
 class Service {
   constructor(id, price, durationExtra, durationMin, durationMax, deliveryExtra, deliveryMin, deliveryMax, instagramOptimize, instagramOptimizeExtra) {
     this.id = document.querySelector(id);
@@ -124,19 +135,43 @@ class Service {
       }
     });
   }
+
+  book() {
+    // let selectedService = this.id;
+    // let booking = selectedService.querySelector(`.booking`);
+    // let wrapper = document.querySelector(`.selected-plan .place-for-plan`);
+
+    // let clone = selectedService.cloneNode(true);
+
+    // booking.addEventListener(`click`, () => {
+    //   let services = document.querySelectorAll(`.service-item`);
+    //   for (let i = 0; i < services.length; i++) {
+    //     const service = services[i];
+    //     service.classList.add(`service-item__fadeOut`);
+    //   }
+
+    //   setTimeout(function () {
+    //     wrapper.appendChild(clone);
+    //     clone.classList.add(`service-item__fadeIn`);
+    //   }, 2000);      
+    // });
+  }
 }
 
 let service1 = new Service(`#service-item-1`, 199, 90, 3, 5, 100, 24, 72, false, null);
 service1.setup();
 service1.duration();
 service1.delivery();
+service1.book();
 
 let service2 = new Service(`#service-item-2`, 299, null, null, null, 100, 24, 72, false, 100);
 service2.setup();
 service2.delivery();
+service2.book();
 service2.instagram();
 
 let service3 = new Service(`#service-item-3`, 119, null, null, null, 100, 24, 72, false, 100);
 service3.setup();
 service3.delivery();
+service3.book();
 service3.instagram();

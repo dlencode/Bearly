@@ -74,6 +74,20 @@ html(lang="en")
                         li.bullet-red.instagram-optimize
                             span Instagram
                                 +instagram
+                .selected-plan
+                    .overlay
+                    .steps
+                        .step-2
+                            .calendly-inline-widget(data-url='https://calendly.com/dlencode/default', style='min-width:320px;height:580px;')
+                            script(type='text/javascript', src='https://assets.calendly.com/assets/external/widget.js')
+                            .processing-actions
+                                .processing-actions--back Back
+                                .processing-actions--next Go to to the next step
+                        .step-3
+                            form(action="")
+                                input#services-name(type="text", name="", placeholder="Your name")
+                                input#services-name(type="text", name="", placeholder="Your name")
+
         
         section.for-free
             .container
@@ -105,7 +119,6 @@ html(lang="en")
                     +faq-item('Can I book one of your services last minute?', 'The minimum time you can book any of our services is 2 days in advance. We aim to create meaningful high quality content and treat each project individually.')
                     +faq-item('Do I pay upfront?', 'Yes. This guarantees us that everything is set and we can properly prepare your experience.')
                     +faq-item('What are the cancellation policy?', `You can make the request using this link. In 3 working days you will get the answer from us and we return your money.`)
-
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")
         script(src="./main-min.js")
