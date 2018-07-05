@@ -35,6 +35,7 @@ var Service = function () {
     this.durationMax = durationMax;
 
     this.total = this.id.querySelector(".service-item__total span");
+    this.processingTotal = document.querySelector(".processing-total span");
 
     this.counter = 0;
   }
@@ -155,29 +156,58 @@ var Service = function () {
   }, {
     key: "book",
     value: function book() {
-      // let selectedService = this.id;
-      // let booking = selectedService.querySelector(`.booking`);
+      var _this3 = this;
+
+      var selectedService = this.id;
+      var booking = selectedService.querySelector(".booking");
+      var selectedPlan = document.querySelector(".selected-plan");
+      var pay = document.querySelector("a.processing-actions--pay");
+      var paypalAddress = "https://paypal.me/dlencode/";
       // let wrapper = document.querySelector(`.selected-plan .place-for-plan`);
 
       // let clone = selectedService.cloneNode(true);
 
-      // booking.addEventListener(`click`, () => {
-      //   let services = document.querySelectorAll(`.service-item`);
-      //   for (let i = 0; i < services.length; i++) {
-      //     const service = services[i];
-      //     service.classList.add(`service-item__fadeOut`);
-      //   }
+      booking.addEventListener("click", function () {
+        _this3.processingTotal.innerHTML = " $" + _this3.total.innerHTML;
+        // console.log(pay.getAttribute(href));
+
+        pay.setAttribute("href", paypalAddress + _this3.total.innerHTML + "usd/");
+        selectedPlan.classList.add("selected-plan--active");
+        var closeButton = document.querySelector(".processing-actions--close");
+        closeButton.addEventListener("click", function () {
+          selectedPlan.classList.remove("selected-plan--active");
+        });
+
+        // selectedPlan.classList.add(`.selected-plan--active`);
+        // let services = document.querySelectorAll(`.service-item`);
+        // for (let i = 0; i < services.length; i++) {
+        //   const service = services[i];
+        //   service.classList.add(`service-item__fadeOut`);
+        // }
+      });
 
       //   setTimeout(function () {
       //     wrapper.appendChild(clone);
       //     clone.classList.add(`service-item__fadeIn`);
       //   }, 2000);      
-      // });
     }
   }]);
 
   return Service;
 }();
+
+var nextStep = document.querySelector(".processing-actions--next");
+var backStep = document.querySelector(".processing-actions--back");
+var step2 = document.querySelector(".step-2");
+var step3 = document.querySelector(".step-3");
+backStep.addEventListener("click", function () {
+  step2.classList.remove("hide-step");
+  step3.classList.remove("show-step");
+});
+nextStep.addEventListener("click", function () {
+  step2.classList.add("hide-step");
+  step3.classList.add("show-step");
+});
 
 var service1 = new Service("#service-item-1", 199, 90, 3, 5, 100, 24, 72, false, null);
 service1.setup();

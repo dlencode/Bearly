@@ -119,16 +119,34 @@
             <div class="step-2">
               <div data-url="https://calendly.com/dlencode/default" style="min-width:320px;height:580px;" class="calendly-inline-widget"></div>
               <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-              <div class="processing-actions">
-                <div class="processing-actions--back">Back</div>
-                <div class="processing-actions--next">Go to to the next step</div>
+              <div class="wrap">
+                <div class="processing-actions">
+                  <div class="processing-actions--close">Close</div>
+                  <div class="processing-actions--next">Go to the next step</div>
+                </div>
               </div>
             </div>
             <div class="step-3">
               <form action="">
-                <input id="services-name" type="text" name="" placeholder="Your name"/>
-                <input id="services-name" type="text" name="" placeholder="Your name"/>
+                <div class="step-3--top">
+                  <input id="services-name" type="text" name="" placeholder="Your name"/>
+                  <input id="services-lastname" type="text" name="" placeholder="Your lastname"/>
+                </div>
+                <div class="step-3--middle">
+                  <input id="services-email" type="text" name="" placeholder="Your email"/>
+                  <input id="services-phone" type="text" name="" placeholder="Your phone"/>
+                </div>
+                <div class="step-3--bottom">   
+                  <textarea id="services-expectations" name="" cols="30" rows="10" placeholder="Tell us about your expectations"></textarea>
+                </div>
+                <p>After we receive your payment, we will contact you within the next few days to confirm your order and details about the filming day.</p>
               </form>
+              <div class="wrap">
+                <div class="processing-total">Total:<span></span></div>
+                <div class="processing-actions">
+                  <div class="processing-actions--back">Back</div><a href="/" target="_blank" class="processing-actions--pay">Pay with PayPal</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

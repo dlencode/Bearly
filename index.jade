@@ -80,13 +80,29 @@ html(lang="en")
                         .step-2
                             .calendly-inline-widget(data-url='https://calendly.com/dlencode/default', style='min-width:320px;height:580px;')
                             script(type='text/javascript', src='https://assets.calendly.com/assets/external/widget.js')
-                            .processing-actions
-                                .processing-actions--back Back
-                                .processing-actions--next Go to to the next step
+                            .wrap
+                                .processing-actions
+                                    .processing-actions--close Close
+                                    .processing-actions--next Go to the next step
                         .step-3
                             form(action="")
-                                input#services-name(type="text", name="", placeholder="Your name")
-                                input#services-name(type="text", name="", placeholder="Your name")
+                                .step-3--top
+                                    input#services-name(type="text", name="", placeholder="Your name")
+                                    input#services-lastname(type="text", name="", placeholder="Your lastname")
+                                .step-3--middle
+                                    input#services-email(type="text", name="", placeholder="Your email")
+                                    input#services-phone(type="text", name="", placeholder="Your phone")
+                                .step-3--bottom    
+                                    textarea#services-expectations(name="", cols="30", rows="10", placeholder="Tell us about your expectations")
+
+                                p After we receive your payment, we will contact you within the next few days to confirm your order and details about the filming day.
+                            .wrap
+                                .processing-total
+                                    | Total:
+                                    span
+                                .processing-actions
+                                    .processing-actions--back Back
+                                    a(href="/", target="_blank").processing-actions--pay Pay with PayPal
 
         
         section.for-free

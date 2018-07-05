@@ -27,6 +27,7 @@ class Service {
     this.durationMax = durationMax;
 
     this.total = this.id.querySelector(`.service-item__total span`);
+    this.processingTotal = document.querySelector(`.processing-total span`);
 
     this.counter = 0;
   }
@@ -137,26 +138,54 @@ class Service {
   }
 
   book() {
-    // let selectedService = this.id;
-    // let booking = selectedService.querySelector(`.booking`);
+    let selectedService = this.id;
+    let booking = selectedService.querySelector(`.booking`);
+    let selectedPlan = document.querySelector(`.selected-plan`);
+    let pay = document.querySelector(`a.processing-actions--pay`);
+    let paypalAddress = `https://paypal.me/dlencode/`;
     // let wrapper = document.querySelector(`.selected-plan .place-for-plan`);
 
     // let clone = selectedService.cloneNode(true);
 
-    // booking.addEventListener(`click`, () => {
-    //   let services = document.querySelectorAll(`.service-item`);
-    //   for (let i = 0; i < services.length; i++) {
-    //     const service = services[i];
-    //     service.classList.add(`service-item__fadeOut`);
-    //   }
+    booking.addEventListener(`click`, () => {     
+      this.processingTotal.innerHTML = ` $${this.total.innerHTML}`;
+      // console.log(pay.getAttribute(href));
+      
+      pay.setAttribute(`href`, `${paypalAddress + this.total.innerHTML}usd/`)
+      selectedPlan.classList.add(`selected-plan--active`);
+      let closeButton = document.querySelector(`.processing-actions--close`);
+      closeButton.addEventListener(`click`, () => {
+        selectedPlan.classList.remove(`selected-plan--active`);
+      });
+      
+      // selectedPlan.classList.add(`.selected-plan--active`);
+      // let services = document.querySelectorAll(`.service-item`);
+      // for (let i = 0; i < services.length; i++) {
+      //   const service = services[i];
+      //   service.classList.add(`service-item__fadeOut`);
+      // }
+    });
 
     //   setTimeout(function () {
     //     wrapper.appendChild(clone);
     //     clone.classList.add(`service-item__fadeIn`);
     //   }, 2000);      
-    // });
   }
 }
+
+let nextStep = document.querySelector(`.processing-actions--next`);
+let backStep = document.querySelector(`.processing-actions--back`);
+let step2 = document.querySelector(`.step-2`);
+let step3 = document.querySelector(`.step-3`);
+backStep.addEventListener(`click`, () => {
+  step2.classList.remove(`hide-step`);
+  step3.classList.remove(`show-step`);
+});
+nextStep.addEventListener(`click`, () => {
+  step2.classList.add(`hide-step`);
+  step3.classList.add(`show-step`);
+});
+
 
 let service1 = new Service(`#service-item-1`, 199, 90, 3, 5, 100, 24, 72, false, null);
 service1.setup();
